@@ -1,4 +1,3 @@
 from visual import *
-a=vector(-1,-1,0)
-b=vector(1,1,0)
-print acos(dot(a,b)/abs(a)/abs(b))
+BOX = box(pos=(0,1,0), length=10, height=0.1,width=10, axis=(1,1,0))
+BALL = sphere(pos=(BOX.pos+BOX.axis*5), radius=0.5)
