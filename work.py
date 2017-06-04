@@ -1,17 +1,18 @@
 from visual import *
-N, dis=10, 0.5
-Box = box(pos=vector(0,1,0), length=2*N, height=0.1, width=5, color=(1,1,1), axis=(10,1,0))
-Light = []
-Theta = []
-for i in range(N):
-	Light.append(sphere(pos=vector(i*dis,3,0), radius=0.05, color=(1,1,0), make_trail=True))
-	Theta.append(-acos(-1)/4)
-dt, t=0.01, 0
+def getColor(a, b, c):
+	return (a/255, b/255, c/255)
+def deg2rad(a):
+	return acos(-1)*a/180
+BOX = box(pos=(0,0,0), length=20, height=0.1, width=2, axis=(10,1,0))
+
+Light = sphere(pos=(-5,3,0), radius=0.01, color=getColor(255,255,0), theta=deg2rad(150), make_trail=True)
+
+t, dt = 0, 0.01
 while True:
 	rate(1/dt)
-	for i in range(N):
-		Light[i].pos+=dt*vector(cos(Theta[i]), sin(Theta[i]), 0)
-		if abs(norm(Box.pos+Box.axis*200 - Light[i].pos)*1000 - norm(Box.axis)*1000) < 1e-3:
-			print abs(norm(Box.pos+Box.axis*200 - Light[i].pos) - norm(Box.axis))
-			Theta[i]=-Theta[i]
-	t+=dt
+	Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
+	a, b, c=BOX.axis.y/BOX.axis.x, -1, BOX.pos.y-(BOX.axis.y/BOX.axis.x)*BOX.pos.x
+	dis = abs(a*Light.x+b*Light.y+c) / sqrt(a*a+b*b)
+	if dis <= Light.radius:
+		BOX_theta = atan(BOX.axis.y/BOX.axis.x)
+		Light.theta = BOX_theta+acos(-1)/2-(Light.theta - BOX_theta - acos(-1)/2)+acos(-1)
