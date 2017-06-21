@@ -115,19 +115,19 @@ t, dt = 0, 0.01
 while True:
 	rate(3/dt)
 	if pause or paused:
-	  continue
+		continue
 	for Light in Reflects:
-	  if abs(Light.pos.x) <= 10 and abs(Light.pos.y) <= 10:
+		if abs(Light.pos.x) <= 10 and abs(Light.pos.y) <= 10:
 		Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
 	for Light in Lights:
-	  if abs(Light.pos.x) <= 10 and abs(Light.pos.y) <= 10:
+		if abs(Light.pos.x) <= 10 and abs(Light.pos.y) <= 10:
 		Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
 		for BOX in BOXES:
 			a, b, c=BOX.axis.y/BOX.axis.x, -1, BOX.pos.y-(BOX.axis.y/BOX.axis.x)*BOX.pos.x
 			dis = abs(a*Light.x+b*Light.y+c) / sqrt(a*a+b*b)
 			if dis <= Light.radius*2.5:
-			  BOX_theta = atan(BOX.axis.y/BOX.axis.x)
-			  Light.theta = 2*(BOX_theta + acos(-1)) - Light.theta
-			  Reflects.append(sphere(pos=Light.pos, radius=0.01, color=getColor(255.,255.,255.), theta=Light.theta+acos(-1), make_trail=True))
-			  Reflects[-1].pos.x-=cos(Light.theta)*dt*2
-			  Reflects[-1].pos.y-=sin(Light.theta)*dt*2
+				BOX_theta = atan(BOX.axis.y/BOX.axis.x)
+				Light.theta = 2*(BOX_theta + acos(-1)) - Light.theta
+				Reflects.append(sphere(pos=Light.pos, radius=0.01, color=getColor(255.,255.,255.), theta=Light.theta+acos(-1), make_trail=True))
+				Reflects[-1].pos.x-=cos(Light.theta)*dt*2
+				Reflects[-1].pos.y-=sin(Light.theta)*dt*2
