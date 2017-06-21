@@ -118,10 +118,10 @@ while True:
 		continue
 	for Light in Reflects:
 		if abs(Light.pos.x) <= 10 and abs(Light.pos.y) <= 10:
-		Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
+			Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
 	for Light in Lights:
 		if abs(Light.pos.x) <= 10 and abs(Light.pos.y) <= 10:
-		Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
+			Light.pos -= vector(cos(Light.theta), sin(Light.theta), 0)*dt
 		for BOX in BOXES:
 			a, b, c=BOX.axis.y/BOX.axis.x, -1, BOX.pos.y-(BOX.axis.y/BOX.axis.x)*BOX.pos.x
 			dis = abs(a*Light.x+b*Light.y+c) / sqrt(a*a+b*b)
