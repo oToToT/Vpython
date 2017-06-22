@@ -126,7 +126,7 @@ while True:
 			a, b, c=BOX.axis.y/BOX.axis.x, -1, BOX.pos.y-(BOX.axis.y/BOX.axis.x)*BOX.pos.x
 			dis = abs(a*Light.x+b*Light.y+c) / sqrt(a*a+b*b)
 			if dis <= Light.radius*2.5:
-				BOX_theta = atan(BOX.axis.y/BOX.axis.x)
+				BOX_theta = atan2(BOX.axis.y, BOX.axis.x)
 				Light.theta = 2*(BOX_theta + acos(-1)) - Light.theta
 				Reflects.append(sphere(pos=Light.pos, radius=0.01, color=getColor(255.,255.,255.), theta=Light.theta+acos(-1), make_trail=True))
 				Reflects[-1].pos.x-=cos(Light.theta)*dt*2
