@@ -18,6 +18,9 @@ BOXES = [box(pos=(BOARD_Length*cos(BOARD_Theta/2), BOARD_Length*sin(BOARD_Theta/
 ddg = text(text="%f degree"%BOARD_theta, pos=(-10,10,0), color=getColor(255.,0.,255.), height=0.5, depth=0.01)
 #show current degree
 
+BALL = sphere(pos=Lights_pos, radius=0.1, color=getColor(255.,255.,0.))
+#show the thing that will be reflected
+
 Lights_N = 24
 Lights_pos = vector(4,0,0)
 #Lights config
@@ -26,9 +29,6 @@ Lights = [sphere(pos=Lights_pos, radius=0.01, color=getColor(255.,255.,0.), thet
 
 Reflects = []
 #the reflection of lights will be insert into Reflects
-
-BALL = sphere(pos=Lights_pos, radius=0.1, color=getColor(255.,255.,0.))
-#show the thing that will be reflected
 
 pre=0
 down=False
